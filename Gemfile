@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #use rest-client gem for calls to the shaky api
 gem 'rest-client'
 
+#Use react-rails gem for js SPA
+gem 'react-rails', '~> 1.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

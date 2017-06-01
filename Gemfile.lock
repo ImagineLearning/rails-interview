@@ -37,6 +37,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.4)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
@@ -50,6 +54,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     debug_inspector (0.0.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
@@ -117,6 +122,12 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rdoc (4.3.0)
+    react-rails (1.11.0)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -169,6 +180,7 @@ DEPENDENCIES
   jquery-rails
   pry-rails
   rails (= 4.2.5.1)
+  react-rails (~> 1.0)
   rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
