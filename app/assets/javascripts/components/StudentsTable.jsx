@@ -7,19 +7,26 @@ var StudentsTable = React.createClass({
         return { students: [] };
     },
 
+    refreshTable: function(data) {
+        this.replaceState({students: data})
+    },
+
     render: function() {
-        return (<table className="table">
-                    <thead>
+        return (<div>
+                    <TableFilter handleFilter={this.refreshTable} />
+                    <table className="table">
+                        <thead>
                         <tr>
                             <th>Name</th>
                             <th>FavoriteMovie</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {this.state.students.map(function(student) {
-                            return <StudentRow key={student.id} student={student}/>
+                            return <StudentRow key={student.id} student={student} />
                         }.bind(this))}
-                    </tbody>
-                </table>);
+                        </tbody>
+                    </table>
+                </div>);
     }
 });

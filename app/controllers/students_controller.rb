@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
     if params[:movie]
       students_table = Student.arel_table
       @students = Student.where(students_table[:favoritemovie].matches("%#{params[:movie]}%"))
-      if request.headers["Content-Type"] == "application/json"
+      if request.format == "application/json"
         render json: @students
       else
         @students
@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
     else
       #TODO: ANDREW use pagination to avoid pulling all students at once
       @students = Student.all
-      if request.headers["Content-Type"] == "application/json"
+      if request.format == "application/json"
         render json: @students
       else
         @students
@@ -27,7 +27,18 @@ class StudentsController < ApplicationController
       @students.each do |s|
         s.name = s.name
       end
-      if request.headers["Content-Type"] == "application/json"
+      if request.format == "application/json"
+        render json: @students
+      else
+        @students
+      end
+    elsif params[:name]
+      students_table = Student.arel_table
+      @students = Student.where(students_table[:firstname].matches("%#{params[:name]}%"))
+      @students.each do |s|
+        s.name = s.name
+      end
+      if request.format == "application/json"
         render json: @students
       else
         @students
@@ -38,7 +49,7 @@ class StudentsController < ApplicationController
       @students.each do |s|
         s.name = s.name
       end
-      if request.headers["Content-Type"] == "application/json"
+      if request.format == "application/json"
         render json: @students
       else
         @students
