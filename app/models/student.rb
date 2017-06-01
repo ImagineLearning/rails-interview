@@ -1,6 +1,4 @@
 class Student < ActiveRecord::Base
-  attr_accessor :favoritemovie
-  alias_attribute :movie, :favoritemovie
 
   #TODO: ANDREW add validations
 
@@ -10,5 +8,9 @@ class Student < ActiveRecord::Base
 
   def name
     self.firstname + (Student.repeated_firstnames.include?(self.firstname) ? ' ' + self.lastname[0] + '.' : '')
+  end
+
+  def movie
+    self.favoritemovie
   end
 end
