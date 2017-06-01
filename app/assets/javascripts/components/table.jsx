@@ -1,6 +1,6 @@
 // app/assets/javascripts/components/table.jsx
 
-window.Table = React.createClass({
+var Table = React.createClass({
     getInitialState: function() {
         return { students: this.props.data };
     },
