@@ -3,7 +3,7 @@ class Student < ActiveRecord::Base
 
   #TODO: ANDREW add validations
 
-  #allows you to pass attributes through to the view
+  #allows passing attributes through to the view without persisting to database (useful for name)
   def attributes
     super.merge('name' => self.name)
   end
