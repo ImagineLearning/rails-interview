@@ -3,27 +3,6 @@ class StudentsController < ApplicationController
     if params[:movie]
       students_table = Student.arel_table
       @students = Student.where(students_table[:favoritemovie].matches("%#{params[:movie]}%"))
-      if request.format == "application/json"
-        render json: @students
-      else
-        @students
-      end
-    else
-      #TODO: ANDREW use pagination to avoid pulling all students at once
-      @students = Student.all
-      if request.format == "application/json"
-        render json: @students
-      else
-        @students
-      end
-    end
-  end
-
-
-  def js
-    if params[:movie]
-      students_table = Student.arel_table
-      @students = Student.where(students_table[:favoritemovie].matches("%#{params[:movie]}%"))
       @students.each do |s|
         s.name = s.name
       end
@@ -55,5 +34,9 @@ class StudentsController < ApplicationController
         @students
       end
     end
+  end
+
+
+  def js
   end
 end

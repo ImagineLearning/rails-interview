@@ -2,7 +2,7 @@ var TableFilter = React.createClass({
     getInitialState: function() {
         return { searchText: '' }
     },
-
+    //TODO: ANDREW filter on keystroke and return all users when filter is empty
     handleChange: function(e) {
         var name = e.target.name;
         var obj = {};
@@ -14,7 +14,7 @@ var TableFilter = React.createClass({
         e.preventDefault();
         $.ajax({
             method: 'GET',
-            url: '/students/js?name=' + this.state.searchText,
+            url: '/students?name=' + this.state.searchText,
             dataType: 'JSON',
             success: function(data) {
                 this.props.handleFilter(data)
@@ -26,7 +26,7 @@ var TableFilter = React.createClass({
         return (<form className="form-inline" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <input type='text' className='form-control'
-                               placeholder="Filter by Student's First Name" name='searchText'
+                               placeholder="Filter by First Name" name='searchText'
                                value={this.state.searchText} onChange={this.handleChange}>
                         </input>
                     </div>

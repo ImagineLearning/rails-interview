@@ -1,9 +1,28 @@
 var StudentsTable = React.createClass({
     getInitialState: function() {
-        return { students: this.props.data,
+        return { students: [],
                  sortByColumn: 'name',
                  sortAlpha: true
                 };
+    },
+
+    componentDidMount: function() {
+        this.loadDataFromServer();
+        $('h3.no_js_enabled').replaceWith("<p> JS Enabled </p>")
+    },
+
+    loadDataFromServer: function() {
+        $.ajax({
+            method: 'GET',
+            url: '/students',
+            dataType: 'JSON',
+            success: function(data) {
+                this.setState({students: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
     },
 
     getDefaultProps: function() {
@@ -46,21 +65,27 @@ var StudentsTable = React.createClass({
     },
 
     render: function() {
-        return (<div>
-                    <TableFilter handleFilter={this.refreshTable} />
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th onClick={() => this.handleSort('name')}>Name</th>
-                            <th onClick={() => this.handleSort('movie')}>Favorite Movie</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.students.sort(this.orderColumns(this.state.sortByColumn)).map(function(student) {
-                                return <StudentRow key={student.id} student={student} />
-                            }.bind(this))}
-                        </tbody>
-                    </table>
-                </div>);
+        var studentsTableOrNothing;
+        if (this.state.students.length > 0) {
+            studentsTableOrNothing = (<div>
+                                          <TableFilter handleFilter={this.refreshTable} />
+                                          <table className="table">
+                                              <thead>
+                                              <tr>
+                                                  <th onClick={() => this.handleSort('name')}>Name</th>
+                                                  <th onClick={() => this.handleSort('movie')}>Favorite Movie</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                              {this.state.students.sort(this.orderColumns(this.state.sortByColumn)).map(function(student) {
+                                                  return <StudentRow key={student.id} student={student} />
+                                              }.bind(this))}
+                                              </tbody>
+                                          </table>
+                                      </div>)
+        } else {
+            studentsTableOrNothing = (<h3>No students here! If you need help or think you found a problem, please contact us.</h3>)
+        }
+        return studentsTableOrNothing;
     }
 });
