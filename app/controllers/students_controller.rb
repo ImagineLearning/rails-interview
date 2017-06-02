@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+
+  #GET /students
   def index
     if params[:movie]
       students_table = Student.arel_table
@@ -37,6 +39,21 @@ class StudentsController < ApplicationController
   end
 
 
+  #Used for SPA view rendering
   def js
+  end
+
+  #POST /foo
+  def create
+  p params
+  p params[:valid]
+  p params['valid']
+    if (params.has_key?(:valid) && params[:valid] == 'true')
+      render :text => "BAR", :status => 202
+    elsif (params.has_key?(:valid) && params[:valid] != 'true')
+      raise "Params include a 'valid' key, but that key is not set to true."
+    else
+      raise "Valid was not passed as a parameter."
+    end
   end
 end
