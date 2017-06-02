@@ -12,14 +12,13 @@ var TableFilter = React.createClass({
         $.ajax({
             method: 'GET',
             url: '/students?name=' + e.target.value,
-            dataType: 'JSON',
-            success: function(data) {
-                this.props.handleFilter(data)
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error('/students?name=' + e.target.value, status, err.toString());
-            }.bind(this)
-        });
+            dataType: 'JSON'
+        }).done(function(data) {
+            this.props.handleFilter('success', data)
+        }.bind(this)).fail(function(xhr, status, err) {
+            console.error('/students?name=', status, err.toString());
+            this.props.handleFilter('error', err.toString())
+        }.bind(this))
     },
 
     render: function() {

@@ -2,7 +2,8 @@ var StudentsTable = React.createClass({
     getInitialState: function() {
         return { students: [],
                  sortByColumn: 'name',
-                 sortAlpha: true
+                 sortAlpha: true,
+                 dataRetrievalError: false,
                 };
     },
 
@@ -15,14 +16,13 @@ var StudentsTable = React.createClass({
         $.ajax({
             method: 'GET',
             url: '/students',
-            dataType: 'JSON',
-            success: function(data) {
-                this.setState({students: data});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error('/students', status, err.toString());
-            }.bind(this)
-        });
+            dataType: 'JSON'
+        }).done(function(data) {
+            this.setState({students: data, dataRetrievalError: false});
+        }.bind(this)).fail(function(xhr, status, err) {
+            console.error('/students', status, err.toString());
+            this.setState({dataRetrievalError: true})
+        }.bind(this));
     },
 
     getDefaultProps: function() {
@@ -32,11 +32,19 @@ var StudentsTable = React.createClass({
                 };
     },
 
-    refreshTable: function(data) {
-        this.setState({ students: data,
-                        sortByColumn: 'name',
-                        sortAlpha: true
-                        })
+    refreshTable: function(status, data) {
+        if (status === 'success') {
+            this.setState({
+                students: data,
+                sortByColumn: 'name',
+                sortAlpha: true,
+                dataRetrievalError: false
+            })
+        } else if (status === 'error') {
+            this.setState({
+                dataRetrievalError: true
+            })
+        }
     },
 
     handleSort: function(column) {
@@ -65,10 +73,11 @@ var StudentsTable = React.createClass({
     },
 
     render: function() {
-        var studentsTableOrNothing;
+        var studentsTableAndFilter;
         if (this.state.students.length > 0) {
-            studentsTableOrNothing = (<div>
+            studentsTableAndFilter = (<div>
                                           <TableFilter handleFilter={this.refreshTable} />
+                                          { this.state.dataRetrievalError ? <Alert /> : null }
                                           <table className="table">
                                               <thead>
                                               <tr>
@@ -84,8 +93,12 @@ var StudentsTable = React.createClass({
                                           </table>
                                       </div>)
         } else {
-            studentsTableOrNothing = (<h3>No students here! If you need help or think you found a problem, please contact us.</h3>)
+            studentsTableAndFilter = (<div>
+                                          <TableFilter handleFilter={this.refreshTable} />
+                                          { this.state.dataRetrievalError ? <Alert /> : null }
+                                          <h3>No students here! If you need help or think you found a problem, please contact us.</h3>
+                                     </div>)
         }
-        return studentsTableOrNothing;
+        return studentsTableAndFilter;
     }
 });

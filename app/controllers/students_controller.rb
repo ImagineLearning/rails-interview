@@ -10,7 +10,6 @@ class StudentsController < ApplicationController
       students_table = Student.arel_table
       @students = Student.where(students_table[:firstname].matches("%#{params[:name]}%"))
       check_first_names(@students)
-      @students = Student.all if @students.blank?
     else
       @students = Student.all
       check_first_names(@students)
