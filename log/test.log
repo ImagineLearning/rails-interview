@@ -1188,3 +1188,41 @@ Processing by StudentsController#index as HTML
   Rendered students/index.html.erb within layouts/application (1.9ms)
 Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
   [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "students"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "students" ("firstname", "lastname", "favoritefood", "favoritecolor", "favoritemovie", "created_at", "updated_at", "id") VALUES ('Jimmy', 'Butler', 'Onion Soup', 'Yellow', 'Orange County', '2018-02-09 21:39:59', '2018-02-09 21:39:59', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "students" ("firstname", "lastname", "favoritefood", "favoritecolor", "favoritemovie", "created_at", "updated_at", "id") VALUES ('Jimmy', 'Garrapolo', 'Tempura shrimp', 'Thistle', 'Taboo', '2018-02-09 21:39:59', '2018-02-09 21:39:59', 298486374)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "students" ("firstname", "lastname", "favoritefood", "favoritecolor", "favoritemovie", "created_at", "updated_at", "id") VALUES ('Tom', 'Brady', 'Eggs', 'Elmer', 'Elysium', '2018-02-09 21:39:59', '2018-02-09 21:39:59', 113629430)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "students" ("firstname", "lastname", "favoritefood", "favoritecolor", "favoritemovie", "created_at", "updated_at", "id") VALUES ('Kobe', 'Bryant', 'Rottini', 'Red', 'Radio', '2018-02-09 21:39:59', '2018-02-09 21:39:59', 281110143)[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO "students" ("firstname", "lastname", "favoritefood", "favoritecolor", "favoritemovie", "created_at", "updated_at", "id") VALUES ('Shaquille', 'O''Neal', 'Veal', 'Violet', 'V for Vendetta', '2018-02-09 21:39:59', '2018-02-09 21:39:59', 1018350795)
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO "students" ("firstname", "lastname", "favoritefood", "favoritecolor", "favoritemovie", "created_at", "updated_at", "id") VALUES ('Joey', 'Galloway', 'Onion Soup', 'Red', 'Taboo', '2018-02-09 21:39:59', '2018-02-09 21:39:59', 51848956)[0m
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------------------------------------
+StudentFlowsTest: test_duplicate_first_names_have_first_initial_of_last_name_appended
+-------------------------------------------------------------------------------------
+Started GET "/students" for 127.0.0.1 at 2018-02-09 14:39:59 -0700
+Processing by StudentsController#index as HTML
+  Rendered students/index.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+StudentFlowsTest: test_names_filterable_by_movie
+------------------------------------------------
+Started GET "/students?movie=taboo" for 127.0.0.1 at 2018-02-09 14:39:59 -0700
+Processing by StudentsController#index as HTML
+  Parameters: {"movie"=>"taboo"}
+  Rendered students/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------------------------
+StudentFlowsTest: test_by_default_the_firstname_of_the_student_is_displayed
+---------------------------------------------------------------------------
+Started GET "/students" for 127.0.0.1 at 2018-02-09 14:39:59 -0700
+Processing by StudentsController#index as HTML
+  Rendered students/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
