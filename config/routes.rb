@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :students
+  resources :students do
+    collection do
+      get :js
+    end
+  end
+
+  post '/foo', to: 'students#foo'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

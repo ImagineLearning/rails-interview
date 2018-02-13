@@ -1,0 +1,24 @@
+<div id="students" data-movie="<%= params[:movie] %>"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    params = $('#students').data("movie") == "" ? {} : {movie: $('#students').data("movie") };
+    endpoint = "/students";
+
+    $.ajax({
+      type: 'GET',
+      url: endpoint,
+      dataType: "json",
+      data: params
+    }).done(function(data) { 
+      window.router = new Interview.Routers.StudentsRouter({students: data.students, name_count: data.name_count});
+      Backbone.history.start();
+    }).error(function(data){
+      alert("API error, please try again."); 
+    });
+
+    setTimeout(function(){
+      $('#students-table').DataTable();
+    }, 100);
+  });
+</script>

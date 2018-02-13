@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+
+.dataTables_wrapper {
+  width: 50%;
+}
+
+.dataTable thead {
+  text-align: left !important;
+}
