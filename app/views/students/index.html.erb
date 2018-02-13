@@ -1,15 +1,29 @@
 <h1>Listing students</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>FavoriteMovie</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>FavoriteMovie</th>
+    </tr>
+  </thead>
 
+  <tbody>
   <% @students.each do |student| %>
     <tr>
-      <td><%= student.name %></td>
+      <% if @name_count[student.name] > 1 %>
+        <td><%= student.name + " " + student.last_initial %></td>
+      <% else %>
+        <td><%= student.name %></td>
+      <% end %>
       <td><%= student.movie %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('table').DataTable();
+  });
+</script>
