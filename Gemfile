@@ -53,8 +53,8 @@ end
 group :test do
   gem 'guard'
   gem 'guard-minitest'
-  gem 'minitest-rails', '~> 3.0.0'
-  gem 'minitest-rails-capybara', '~> 3.0.0'
+  gem 'minitest-rails', '~> 2.0'
+  gem 'minitest-rails-capybara', '~> 2.0'
   gem 'minitest-reporters'
 end
 
