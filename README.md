@@ -1,3 +1,80 @@
+# Eppes
+
+[![codebeat badge](https://codebeat.co/badges/795df8a7-0fe8-4330-8169-9ff8362f59d9)](https://codebeat.co/projects/github-com-partydrone-rails-interview-master)
+
+
+## Getting started
+
+This project runs in Docker! To run it, you will need [Docker Community Edition (CE)](https://www.docker.com/community-edition) for your respective platform.
+
+### Download the app from GitHub
+
+To get up and running, clone this repo to your
+local machine:
+
+```
+$ git clone https://github.com/partydrone/rails-interview Eppes
+```
+
+<!-- ### Create a `.env` file
+
+This app gets most of it's configuration information from environment variables
+stored in a local file. We included an example `.env.example` file. Copy this
+file to `.env` at the root of the project and make any necessary changes.
+Comments in the file will help you determine what values you need. -->
+
+### Build the app
+Once you have copied the project locally, run:
+
+```
+$ docker-compose build
+```
+
+This builds a new image from the app's codebase.
+
+### Set up the database
+
+You will need to create the database and seed it with some data:
+
+```
+$ docker-compose run app rake db:setup
+```
+
+## Running the app
+
+When you're ready to fire it up:
+
+```
+$ docker-compose up -d
+```
+
+It may take a bit for all the container images to download the first time, but
+once it's done you can make sure everything is running with the following command:
+
+```
+docker-compose ps
+```
+
+If everything is honky-dory, you will see something like this:
+
+```
+-------------------------------------------------------------------------------------
+eppes_app_1        bundle exec rails s -p 300 ...   Up      0.0.0.0:3000->3000/tcp
+eppes_postgres_1   /docker-entrypoint.sh postgres   Up      0.0.0.0:5433->5432/tcp
+```
+
+You can now access the app in a browser at `http://localhost:3000`.
+
+## Cleaning up
+
+Once you're done, just shut everything down:
+
+```
+$ docker-compose down
+```
+
+---
+
 # rails-interview — a sample Ruby on Rails app for potential hires
 
 ## Introduction
@@ -118,4 +195,3 @@ If the parameter is not present in the `POST` body or it is not the string
 `true`, raise an exception.
 
 Thanks!
-
