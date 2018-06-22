@@ -1,0 +1,11 @@
+.DS_Store
+.git
+.dockerignore
+.byebug_history
+/log/*
+/tmp/*
+Dockerfile
+README.md
+gource.*
+*.example
+*.travis
