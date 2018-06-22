@@ -37,7 +37,7 @@ This builds a new image from the app's codebase.
 You will need to create the database and seed it with some data:
 
 ```
-$ docker-compose run app rails db:setup
+$ docker-compose run app rake db:setup
 ```
 
 ## Running the app
