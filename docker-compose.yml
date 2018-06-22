@@ -5,15 +5,14 @@ version: '3'
 services:
   app:
     build: .
-    # command: bundle exec puma -C config/puma.rb
-    command: bundle exec rails s
+    command: bundle exec puma -C config/puma.rb
     stdin_open: true
     tty: true
+    ports:
+      - 3000:3000
     volumes:
       - .:/app
       - ./public:/app/public
-    expose:
-      - 3000
     depends_on:
       - postgres
     env_file:
