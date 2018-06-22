@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
   def index
-    #stuff will happen here
+    @students = Student.search(params[:movie])
   end
 end
