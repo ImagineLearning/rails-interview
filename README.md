@@ -16,12 +16,12 @@ local machine:
 $ git clone https://github.com/partydrone/rails-interview Eppes
 ```
 
-<!-- ### Create a `.env` file
+### Create a `.env` file
 
 This app gets most of it's configuration information from environment variables
 stored in a local file. We included an example `.env.example` file. Copy this
 file to `.env` at the root of the project and make any necessary changes.
-Comments in the file will help you determine what values you need. -->
+Comments in the file will help you determine what values you need.
 
 ### Build the app
 Once you have copied the project locally, run:
@@ -58,12 +58,29 @@ docker-compose ps
 If everything is honky-dory, you will see something like this:
 
 ```
--------------------------------------------------------------------------------------
-eppes_app_1        bundle exec rails s -p 300 ...   Up      0.0.0.0:3000->3000/tcp
-eppes_postgres_1   /docker-entrypoint.sh postgres   Up      0.0.0.0:5433->5432/tcp
+      Name                    Command               State           Ports         
+----------------------------------------------------------------------------------
+eppes_app_1        bundle exec puma -C config ...   Up      0.0.0.0:3000->3000/tcp
+eppes_postgres_1   docker-entrypoint.sh postgres    Up      0.0.0.0:5432->5432/tcp
 ```
 
-You can now access the app in a browser at `http://localhost:3000`.
+You can now access the app in a browser at [http://localhost:3000](http://localhost:3000).
+
+## Running Tests
+
+To run the test suite, have Docker Compose fire up an app container to run them:
+
+```
+docker-compose run app rake test
+```
+
+If you want to run your tests while you code, use Guard:
+
+```
+docker-compose run app guard -c
+```
+
+The `-c` flag tells Guard to clear the screen before each test run.
 
 ## Cleaning up
 
