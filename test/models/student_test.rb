@@ -11,17 +11,17 @@ class StudentTest < ActiveSupport::TestCase
     assert_equal student.lastinitial, 'R.'
   end
 
-  test "has a name" do
-    assert_respond_to student, :name
+  test "has a display name" do
+    assert_respond_to student, :displayname
   end
 
-  test "returns first name if unique" do
-    assert_equal student.name, 'Barney'
+  test "display name returns first name if unique" do
+    assert_equal student.displayname, 'Barney'
   end
 
-  test "adds last initial if first name is not unique" do
+  test "display name adds last initial if first name is not unique" do
     student.firstname = students(:one).firstname
-    assert_equal student.name, [student.firstname, student.lastinitial].join(' ')
+    assert_equal student.displayname, [student.firstname, student.lastinitial].join(' ')
   end
 
   test "has a search method" do
