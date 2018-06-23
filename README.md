@@ -58,7 +58,7 @@ docker-compose ps
 If everything is honky-dory, you will see something like this:
 
 ```
-      Name                    Command               State           Ports         
+      Name                    Command               State           Ports
 ----------------------------------------------------------------------------------
 eppes_app_1        bundle exec puma -C config ...   Up      0.0.0.0:3000->3000/tcp
 eppes_postgres_1   docker-entrypoint.sh postgres    Up      0.0.0.0:5432->5432/tcp
@@ -177,20 +177,20 @@ loaded from the JavaScript side, not rendered by Rails.
 
 ### Tasks
 
-1. Allow `/students` to return JSON using headers. (Don't use `/students.json`)
-1. Add a nested collection route named `:js` to the `:students` resource
-1. Create a corresponding `js` method in the `StudentsController`
-1. Return a view from `/students/js` that will load a single-page application version
+- [x] Allow `/students` to return JSON using headers. (Don't use `/students.json`)
+- [x] Add a nested collection route named `:js` to the `:students` resource
+- [x] Create a corresponding `js` method in the `StudentsController`
+- [x] Return a view from `/students/js` that will load a single-page application version
    of `/students` and fulfill the constraints listed above.
-  1. SPA should only load everything below the `h1` header with front-end views
-  1. The JavaScript code should trigger the rendering of the rest of the page.
-1. SPA should have all functionality of `/students` with:
-  - Sorting by clicking on table headers
-  - Filtering by name with a text input just above the table
-1. SPA should only make JSON AJAX calls to `/students`
-  - Must use Promises (native, jQuery, $q, etc) for AJAX requests
-  - Must implement successful case when API responds properly
-  - Must implement unsuccessful case when API fails to respond
+    - SPA should only load everything below the `h1` header with front-end views
+    - The JavaScript code should trigger the rendering of the rest of the page.
+- [ ] SPA should have all functionality of `/students` with:
+    - Sorting by clicking on table headers
+    - Filtering by name with a text input just above the table
+- [ ] SPA should only make JSON AJAX calls to `/students`
+    - Must use Promises (native, jQuery, $q, etc) for AJAX requests
+    - Must implement successful case when API responds properly
+    - Must implement unsuccessful case when API fails to respond
 
 ## Areas of Concern
 
