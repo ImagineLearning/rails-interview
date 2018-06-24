@@ -3,5 +3,7 @@ export interface Student {
   firstName:     string;
   lastName:      string;
   displayName:   string;
+  favoriteFood:  string;
+  favoriteColor: string;
   favoriteMovie: string;
 }

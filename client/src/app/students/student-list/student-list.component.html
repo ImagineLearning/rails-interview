@@ -1,8 +1,11 @@
 <table>
-  <tr>
-    <th>Name</th>
-    <th>FavoriteMovie</th>
-  </tr>
-
-  <app-student-list-item></app-student-list-item>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>FavoriteMovie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-student-list-item *ngFor="let student of students | async" [student]="student"></app-student-list-item>
+  </tbody>
 </table>
