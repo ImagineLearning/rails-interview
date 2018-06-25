@@ -5,4 +5,9 @@ class StudentsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
+
+  test "gets js" do
+    get :js
+    assert_response :success
+  end
 end

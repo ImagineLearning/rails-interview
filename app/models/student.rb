@@ -3,7 +3,7 @@ class Student < ActiveRecord::Base
     "#{lastname[0]}."
   end
 
-  def name
+  def displayname
     name = []
     name << firstname
     name << lastinitial if Student.where(firstname: firstname).count > 1

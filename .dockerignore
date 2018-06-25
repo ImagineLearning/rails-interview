@@ -2,6 +2,7 @@
 .git
 .dockerignore
 .byebug_history
+/client/*
 /log/*
 /tmp/*
 Dockerfile
