@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     get 'js', on: :collection
   end
 
+  post 'foo', to: 'students#just_checking'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
