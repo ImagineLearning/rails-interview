@@ -24,14 +24,14 @@ export class StudentService {
 
     return this.http.get<Student[]>(this.studentsUrl, httpOptions)
     .pipe(
-      tap(students => console.log(`Fetched students`, students)),
+      tap(students => this.messageService.add('StudentService: fetched students')),
       catchError(this.handleError('getStudents', []))
     );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(`There was a problem processing ${operation}: `, error);
+      this.messageService.add(`StudentService: There was a problem processing ${operation}: ${error}`);
       return of(result as T);
     };
   }
