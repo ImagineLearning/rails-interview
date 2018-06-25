@@ -31,7 +31,7 @@ export class StudentService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add(`StudentService: There was a problem processing ${operation}: ${error}`);
+      this.messageService.add(`StudentService: There was a problem processing ${operation}: ${error.message}`);
       return of(result as T);
     };
   }
