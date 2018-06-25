@@ -5,7 +5,12 @@
       <th>FavoriteMovie</th>
     </tr>
   </thead>
+
   <tbody>
-    <app-student-list-item *ngFor="let student of students | async" [student]="student"></app-student-list-item>
+    <!-- <app-student-list-item *ngFor="let student of students | async" [student]="student"></app-student-list-item> -->
+    <tr *ngFor="let student of students | async">
+      <td>{{ student.displayName }}</td>
+      <td>{{ student.favoriteMovie }}</td>
+    </tr>
   </tbody>
 </table>
