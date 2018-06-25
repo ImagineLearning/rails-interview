@@ -184,10 +184,10 @@ loaded from the JavaScript side, not rendered by Rails.
    of `/students` and fulfill the constraints listed above.
     - SPA should only load everything below the `h1` header with front-end views
     - The JavaScript code should trigger the rendering of the rest of the page.
-- [ ] SPA should have all functionality of `/students` with:
+- [x] SPA should have all functionality of `/students` with:
     - Sorting by clicking on table headers
     - Filtering by name with a text input just above the table
-- [x] SPA should only make JSON AJAX calls to `/students`
+- [-] SPA should only make JSON AJAX calls to `/students`
     - Must use Promises (native, jQuery, $q, etc) for AJAX requests
     - Must implement successful case when API responds properly
     - Must implement unsuccessful case when API fails to respond
