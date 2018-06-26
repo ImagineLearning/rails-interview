@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { MessageService } from '../../message.service';
 import { StudentService } from '../student.service';
 import { Student } from '../student';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,7 +17,7 @@ export class StudentListComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private messageService: MessageService) { }
 
   ngOnInit() {
     this.getStudents();
@@ -24,9 +25,12 @@ export class StudentListComponent implements OnInit {
 
   getStudents(): void {
     this.studentService.getStudents()
-    .subscribe(students => {
+    .then(students => {
       this.students = new MatTableDataSource(students)
       this.students.sort = this.sort;
+      this.messageService.add('StudentListComponent: fetched students');
+    }, err => {
+      this.messageService.add(`StudentListComponent: There was a problem processing getStudents: ${err.message}`);
     });
   }
 
@@ -35,5 +39,4 @@ export class StudentListComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.students.filter = filterValue;
   }
-
 }
