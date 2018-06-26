@@ -1,3 +1,97 @@
+# Eppes
+
+[![codebeat badge](https://codebeat.co/badges/795df8a7-0fe8-4330-8169-9ff8362f59d9)](https://codebeat.co/projects/github-com-partydrone-rails-interview-master)
+
+
+## Getting started
+
+This project runs in Docker! To run it, you will need [Docker Community Edition (CE)](https://www.docker.com/community-edition) for your respective platform.
+
+### Download the app from GitHub
+
+To get up and running, clone this repo to your
+local machine:
+
+```
+$ git clone https://github.com/partydrone/rails-interview Eppes
+```
+
+### Create a `.env` file
+
+This app gets most of it's configuration information from environment variables
+stored in a local file. We included an example `.env.example` file. Copy this
+file to `.env` at the root of the project and make any necessary changes.
+Comments in the file will help you determine what values you need.
+
+### Build the app
+Once you have copied the project locally, run:
+
+```
+$ docker-compose build
+```
+
+This builds a new image from the app's codebase.
+
+### Set up the database
+
+You will need to create the database and seed it with some data:
+
+```
+$ docker-compose run app rake db:setup
+```
+
+## Running the app
+
+When you're ready to fire it up:
+
+```
+$ docker-compose up -d
+```
+
+It may take a bit for all the container images to download the first time, but
+once it's done you can make sure everything is running with the following command:
+
+```
+docker-compose ps
+```
+
+If everything is honky-dory, you will see something like this:
+
+```
+      Name                    Command               State           Ports
+----------------------------------------------------------------------------------
+eppes_app_1        bundle exec puma -C config ...   Up      0.0.0.0:3000->3000/tcp
+eppes_postgres_1   docker-entrypoint.sh postgres    Up      0.0.0.0:5432->5432/tcp
+```
+
+You can now access the app in a browser at [http://localhost:3000](http://localhost:3000).
+
+## Running Tests
+
+To run the test suite, have Docker Compose fire up an app container to run them:
+
+```
+docker-compose run app rake test
+```
+
+If you want to run your tests while you code, use Guard:
+
+```
+docker-compose run app guard -c
+```
+
+The `-c` flag tells Guard to clear the screen before each test run.
+
+## Cleaning up
+
+Once you're done, just shut everything down:
+
+```
+$ docker-compose down
+```
+
+---
+
 # rails-interview — a sample Ruby on Rails app for potential hires
 
 ## Introduction
@@ -83,20 +177,20 @@ loaded from the JavaScript side, not rendered by Rails.
 
 ### Tasks
 
-1. Allow `/students` to return JSON using headers. (Don't use `/students.json`)
-1. Add a nested collection route named `:js` to the `:students` resource
-1. Create a corresponding `js` method in the `StudentsController`
-1. Return a view from `/students/js` that will load a single-page application version
+- [x] Allow `/students` to return JSON using headers. (Don't use `/students.json`)
+- [x] Add a nested collection route named `:js` to the `:students` resource
+- [x] Create a corresponding `js` method in the `StudentsController`
+- [x] Return a view from `/students/js` that will load a single-page application version
    of `/students` and fulfill the constraints listed above.
-  1. SPA should only load everything below the `h1` header with front-end views
-  1. The JavaScript code should trigger the rendering of the rest of the page.
-1. SPA should have all functionality of `/students` with:
-  - Sorting by clicking on table headers
-  - Filtering by name with a text input just above the table
-1. SPA should only make JSON AJAX calls to `/students`
-  - Must use Promises (native, jQuery, $q, etc) for AJAX requests
-  - Must implement successful case when API responds properly
-  - Must implement unsuccessful case when API fails to respond
+    - SPA should only load everything below the `h1` header with front-end views
+    - The JavaScript code should trigger the rendering of the rest of the page.
+- [x] SPA should have all functionality of `/students` with:
+    - Sorting by clicking on table headers
+    - Filtering by name with a text input just above the table
+- [x] SPA should only make JSON AJAX calls to `/students`
+    - Must use Promises (native, jQuery, $q, etc) for AJAX requests
+    - Must implement successful case when API responds properly
+    - Must implement unsuccessful case when API fails to respond
 
 ## Areas of Concern
 
@@ -118,4 +212,3 @@ If the parameter is not present in the `POST` body or it is not the string
 `true`, raise an exception.
 
 Thanks!
-
